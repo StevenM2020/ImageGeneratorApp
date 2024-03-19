@@ -14,8 +14,7 @@ namespace ImageGeneratorApp
 {
     internal static class Storage
     {
-
-        const int keySize = 64;
+        const int keySize = 32;
         const int iterations = 350000;
 
         // stores a value in the secure storage
@@ -195,11 +194,15 @@ namespace ImageGeneratorApp
         {
             try
             {
+                var user_id = Convert.ToInt32(await GetSecureStorage("UserID"));
+                if (user_id == null)
+                    return;
+
                 var cs = await GetSecureStorage("ConnectionString");
                 using (var context = new ImageGeneratorDbContext(cs))
                 {
                     var user = await context.User.FirstOrDefaultAsync(u =>
-                        u.Id == Convert.ToInt32(16));
+                        u.Id == Convert.ToInt32(user_id));
                     if (user != null)
                     {
                         var newImage = new ImageTable { Image = strImage, User_ID = user.Id };
@@ -221,10 +224,14 @@ namespace ImageGeneratorApp
         {
             try
             {
+                var user_id = Convert.ToInt32(await GetSecureStorage("UserID"));
+                if (user_id == null)
+                    return null;
+
                 var cs = await GetSecureStorage("ConnectionString");
                 using (var context = new ImageGeneratorDbContext(cs))
                 {
-                    int id = Convert.ToInt32(16);
+                    int id = Convert.ToInt32(user_id);
                     var images = await context.Image.Where(i => i.User_ID == id).ToArrayAsync();
                     if (images != null)
                     {

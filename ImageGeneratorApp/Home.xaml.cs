@@ -39,7 +39,8 @@ public partial class Home : ContentPage
                 if (blnPrompt)
                 {
                     string ImprovedPrompt = await ImageGen.ImprovePrompt(txtPrompt.Text);
-                    DisplayAlert("Improved Prompt", ImprovedPrompt, "OK");
+                    lblImprovedPrompt.Text = ImprovedPrompt;
+                    stkImprovedPrompt.IsVisible = true;
                     btnGenerateImage.IsEnabled = false;
                     btnGenerateImage.Text = "Generating...";
                     string base64Image =

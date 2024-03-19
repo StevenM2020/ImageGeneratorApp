@@ -30,9 +30,6 @@ namespace ImageGeneratorApp
         // when the user clicks the button or presses enter
         private async void OnActionButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Home());
-            Navigation.RemovePage(this);
-            return;
             if (LoginScreen)
             {
                 Login();
@@ -49,12 +46,11 @@ namespace ImageGeneratorApp
             string email = txtEmail.Text;
             string password = txtPassword.Text;
 
-            // check if the email and password are valid
-            //if (!(Validation.ValidateEmail(email) && Validation.ValidatePassword(password)))
-            //{
-            //    DisplayAlert("Error", "Email or password does not meet requirements", "OK");
-            //    return;
-            //}
+            if (!Validation.ValidateEmail(txtEmail) || !Validation.ValidatePassword(txtPassword))
+            {
+                //DisplayAlert("Error", "Invalid email or password", "OK");
+                return;
+            }
 
             // check if the email and password are correct
             bool blnCheckHash = await Storage.CheckPassword( email, password);
@@ -67,6 +63,9 @@ namespace ImageGeneratorApp
             // save the user's ID to the secure storage
             Storage.SaveUserID(email);
             DisplayAlert("", "It worked!", "OK");
+
+            await Navigation.PushAsync(new Home());
+            Navigation.RemovePage(this);
         }
 
 
@@ -98,12 +97,13 @@ namespace ImageGeneratorApp
                 //DisplayAlert("Error", "Invalid email", "OK");
                 txtEmail.BackgroundColor = Color.FromRgb(100, 0, 0);
                 return;
-            }else
-                txtEmail.BackgroundColor = Color.FromRgb(31, 31, 31);
+            }
+            txtEmail.BackgroundColor = Color.FromRgb(31, 31, 31);
 
             Storage.CreateUser(email, password);
             Storage.SaveUserID(email);
             await Navigation.PushAsync(new Home());
+            Navigation.RemovePage(this);
         }
 
         // this function is called when the user types in the email entry
