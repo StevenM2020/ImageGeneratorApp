@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Class:       Validation
+// Author:      Steven Motz
+// Date:        03/18/2024
+// Description: This class contains functions for validating user input. It contains functions for validating email, password, age, and prompt.
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

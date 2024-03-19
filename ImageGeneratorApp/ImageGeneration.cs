@@ -1,4 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿// Class:       ImageGeneration
+// Author:      Steven Motz
+// Date:        03/18/2024
+// Description: This class contains functions for generating images. It contains functions for generating images, validating prompts, and improving prompts.
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

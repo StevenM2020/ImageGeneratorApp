@@ -1,4 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿// Class:       Storage
+// Author:      Steven Motz
+// Date:        03/18/2024
+// Description: This class contains functions for storing and retrieving data from the database. It contains functions for creating a user, checking if a user exists, checking if a password is correct, saving the user's ID, getting the user's email, saving an image, and getting images.
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,8 +11,6 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-//using CoreText;
-
 
 namespace ImageGeneratorApp
 {
@@ -21,6 +23,19 @@ namespace ImageGeneratorApp
         public static async void SetSecureStorage(string key, string value)
         {
             await SecureStorage.SetAsync(key, value);
+        }
+
+        public static async void SetRememberUser(bool value)
+        {
+            SetSecureStorage("RememberUser", value.ToString());
+        }
+
+        public static async Task<bool> GetRememberUser()
+        {
+            string? strRememberUser = await GetSecureStorage("RememberUser");
+            if (strRememberUser == null)
+                return false;
+            return Convert.ToBoolean(strRememberUser);
         }
 
         // retrieves a value from the secure storage

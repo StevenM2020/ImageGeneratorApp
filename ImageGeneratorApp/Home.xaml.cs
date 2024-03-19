@@ -1,8 +1,11 @@
+// Program:     Page for generating images
+// Author:      Steven Motz
+// Date:        03/18/2024
+// Description: This is the page for generating images. It allows the user to generate images based on a prompt and view the images they have generated.
 using System.Diagnostics;
 using ImageGen = ImageGeneratorApp.ImageGeneration;
 using Validation = ImageGeneratorApp.Validation;
 using Storage = ImageGeneratorApp.Storage;
-using static System.Windows.Forms.ImageList;
 using System.Collections.ObjectModel;
 
 namespace ImageGeneratorApp;
@@ -15,6 +18,7 @@ public partial class Home : ContentPage
 
     }
 
+    // when the slider value changes, round the value and set the label to the rounded value
     private void OnSliderValueChanged(object sender, ValueChangedEventArgs e)
     {
         int roundedValue = (int)Math.Round(e.NewValue);
@@ -26,6 +30,7 @@ public partial class Home : ContentPage
         lblImageSize.Text = ImageGen.GetImageSize(roundedValue).ToString();
     }
 
+    // when the user clicks the generate image button it will generate an image based on the prompt
     private async void OnActionButtonClicked(object sender, EventArgs e)
     {
         try
@@ -105,5 +110,11 @@ public partial class Home : ContentPage
         imgGeneratedImage.Source = ((Image)sender).Source;
         scrollContainer.ScrollToAsync(0, imgGeneratedImage.Y - 10, true);
     }
-    
+
+    // when the user clicks the logout button it will log the user out and take them back to the login page
+    private async void OnLogoutClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new MainPage());
+        Navigation.RemovePage(this);
     }
+}

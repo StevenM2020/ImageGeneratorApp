@@ -7,9 +7,19 @@
     <ScrollView
         x:Name="scrollContainer"
         >
+
         <VerticalStackLayout
         Padding="30,0"
         Spacing="25">
+
+            <Button 
+                x:Name="btnLogout"
+                Text="Logout" 
+                BackgroundColor="#d5433a" 
+                VerticalOptions="Start" 
+                HorizontalOptions="End" 
+                Clicked="OnLogoutClicked"/>
+
             <Label 
             Text="Create an image"
             VerticalOptions="Center" 
@@ -53,6 +63,8 @@
             Text="Generate Image"
             Clicked="OnActionButtonClicked"
         />
+
+            <!-- Improved Prompt -->
             <StackLayout 
                 x:Name="stkImprovedPrompt"
                 Orientation="Horizontal"
