@@ -164,5 +164,10 @@ namespace ImageGeneratorApp
                 stkDate.IsVisible = true;
             }
         }
+
+        private void OnRememberToggled(object sender, EventArgs e)
+        {
+            Storage.SetRememberUser(swtRemember.IsToggled);
+        }
     }
 }

@@ -28,6 +28,7 @@
                 MaxLength="20"
                 TextChanged="OnTextChanged"
                 Completed="OnActionButtonClicked"
+                IsPassword="True"
                 />
 
             <StackLayout Orientation="Horizontal" 
@@ -60,7 +61,9 @@
                 <Switch 
                     x:Name="swtRemember" 
                     IsToggled="false" 
-                    Margin="10,0,0,0"/>
+                    Margin="10,0,0,0"
+                    Toggled="OnRememberToggled"
+                    />
             </StackLayout>
 
             <HorizontalStackLayout

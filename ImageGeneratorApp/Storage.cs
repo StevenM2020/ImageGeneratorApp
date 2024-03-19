@@ -48,7 +48,7 @@ namespace ImageGeneratorApp
             catch (Exception e)
             {
                 if (App.DebugMessagesOn())
-                    Console.WriteLine(e);
+                    Debug.WriteLine(e);
                 return null;
             }
         }
@@ -71,7 +71,7 @@ namespace ImageGeneratorApp
             catch (Exception e)
             {
                 if (App.DebugMessagesOn())
-                    Console.WriteLine(e);
+                    Debug.WriteLine(e);
             }
         }
 
@@ -97,7 +97,7 @@ namespace ImageGeneratorApp
             catch (Exception e)
             {
                 if (App.DebugMessagesOn())
-                    Console.WriteLine(e);
+                    Debug.WriteLine(e);
                 return false;
             }
         }
@@ -131,7 +131,7 @@ namespace ImageGeneratorApp
             catch (Exception e)
             {
                 if (App.DebugMessagesOn())
-                    Console.WriteLine(e);
+                    Debug.WriteLine(e);
                 return false;
             }
         }
@@ -154,7 +154,7 @@ namespace ImageGeneratorApp
             catch (Exception e)
             {
                 if (App.DebugMessagesOn())
-                    Console.WriteLine(e);
+                    Debug.WriteLine(e);
             }
         }
 
@@ -181,7 +181,7 @@ namespace ImageGeneratorApp
             catch (Exception e)
             {
                 if (App.DebugMessagesOn())
-                    Console.WriteLine(e);
+                    Debug.WriteLine(e);
                 return null;
             }
         }
@@ -231,7 +231,7 @@ namespace ImageGeneratorApp
             {
                 Debug.WriteLine(e);
                 if (App.DebugMessagesOn())
-                    Console.WriteLine(e);
+                    Debug.WriteLine(e);
             }
         }
 
@@ -260,17 +260,16 @@ namespace ImageGeneratorApp
                     }
                     else
                     {
-                        Debug.WriteLine("No images found");
+                        if (App.DebugMessagesOn())
+                            Debug.WriteLine("No images found");
                         return null;
                     }
                 }
             }
             catch (Exception e)
             {
-                Debug.Write(" start of an error");
-                Debug.WriteLine(e);
                 if (App.DebugMessagesOn())
-                    Console.WriteLine(e);
+                    Debug.WriteLine(e);
                 return null;
             }
         }
