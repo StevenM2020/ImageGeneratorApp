@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ImageGeneratorApp.Home"
+             Title="Home">
+
+    <ScrollView
+        x:Name="scrollContainer"
+        >
+        <VerticalStackLayout
+        Padding="30,0"
+        Spacing="25">
+            <Label 
+            Text="Create an image"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            Style="{StaticResource Headline}"
+            SemanticProperties.HeadingLevel="Level1" />
+
+            <Entry 
+            x:Name="txtPrompt"
+            Placeholder="Enter you prompt"
+            MaxLength="300"
+            />
+
+            <!-- Image Size Slider -->
+            <StackLayout 
+            Orientation="Horizontal"
+            Spacing="10">
+                <Label 
+                Text="Image Size: " 
+                VerticalOptions="Center" 
+                TextColor="gray"/>
+                <Label 
+                x:Name="lblImageSize"
+                Text="256" 
+                VerticalOptions="Center" 
+                TextColor="white"
+                WidthRequest="40"/>
+
+                <Slider 
+                x:Name="sldImageSize"
+                Minimum="0" 
+                Maximum="2"
+                Value="0"
+                ValueChanged="OnSliderValueChanged"
+                WidthRequest="100"
+            />
+            </StackLayout>
+
+            <Button
+            x:Name="btnGenerateImage"
+            Text="Generate Image"
+            Clicked="OnActionButtonClicked"
+        />
+
+
+            <Image 
+            x:Name="imgGeneratedImage"
+             />
+
+            <!-- display old images -->
+            <CollectionView 
+                x:Name="imagesCollection" 
+                ItemsLayout="VerticalGrid, 3">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid 
+                            Padding="10">
+                            <Image 
+                                Aspect="AspectFill" 
+                                Source="{Binding .}"
+                                >
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        Tapped="OnImageClicked" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
