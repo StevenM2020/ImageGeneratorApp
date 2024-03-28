@@ -54,7 +54,7 @@ namespace ImageGeneratorApp
         }
 
         // adds a new user to the database
-        internal static async void CreateUser(string strEmail, string strPassword)
+        internal static async Task CreateUser(string strEmail, string strPassword)
         {
             var salt = RandomNumberGenerator.GetBytes(keySize);
             var hash = HashString(strPassword, salt);
@@ -136,8 +136,8 @@ namespace ImageGeneratorApp
             }
         }
 
-        // uses the email to retrieve the user's ID and store it in the secure storage
-        internal static async void SaveUserID(string strEmail)
+        // Saves the users ID 
+        internal static async Task SaveUserID(string strEmail)
         {
             try
             {
@@ -184,11 +184,6 @@ namespace ImageGeneratorApp
                     Debug.WriteLine(e);
                 return null;
             }
-        }
-
-        internal static async void SaveRememberUser()
-        {
-            return;
         }
 
         // hashes a string using the PBKDF2 algorithm

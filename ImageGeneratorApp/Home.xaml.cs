@@ -14,6 +14,7 @@ public partial class Home : ContentPage
 	public Home()
 	{
 		InitializeComponent();
+        LoadUserName();
         LoadImages();
 
     }
@@ -77,6 +78,7 @@ public partial class Home : ContentPage
     // loads the images from the database and displays them in the collection
     private async Task LoadImages()
     {
+        await Task.Delay(100); // This is a workaround for a bug where the images load before the new id is saved
         try
         {
             var imageStrings = await Storage.GetImages();
@@ -93,6 +95,12 @@ public partial class Home : ContentPage
         {
             DisplayAlert("Error", "Failed to load images", "OK");
         }
+    }
+
+    private async Task LoadUserName()
+    {
+        string email = await Storage.GetEmail();
+        lblUsername.Text = email.Substring(0, email.IndexOf('@'));
     }
 
     // adds the image to the collection

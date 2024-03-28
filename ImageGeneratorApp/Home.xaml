@@ -4,26 +4,55 @@
              x:Class="ImageGeneratorApp.Home"
              Title="Home">
 
-    <ScrollView
+    <StackLayout>
+        <!-- Top Bar -->
+        <Grid
+            BackgroundColor="#101010"  
+            Padding="10"
+            VerticalOptions="Start">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label
+                x:Name="lblUsername"
+                Text="username"
+                TextColor="White"
+                VerticalOptions="Center"
+                HorizontalOptions="Start"
+                Margin="0,0,10,0"  
+                FontSize="20" />
+
+            <Button 
+                x:Name="btnLogout"
+                Text="Logout"
+                Clicked="OnLogoutClicked"
+                BackgroundColor="#d5433a"
+                TextColor="White"
+                VerticalOptions="Center"
+                HorizontalOptions="End"
+                Grid.Column="1"
+                Margin="0,0,10,0" 
+                CornerRadius="5" />
+
+        </Grid>
+
+        <ScrollView
         x:Name="scrollContainer"
+        VerticalOptions="FillAndExpand"
         >
 
         <VerticalStackLayout
         Padding="30,0"
         Spacing="25">
 
-            <Button 
-                x:Name="btnLogout"
-                Text="Logout" 
-                BackgroundColor="#d5433a" 
-                VerticalOptions="Start" 
-                HorizontalOptions="End" 
-                Clicked="OnLogoutClicked"/>
 
             <Label 
             Text="Create an image"
             VerticalOptions="Center" 
             HorizontalOptions="Center"
+            Margin="0,20,0,0"
             Style="{StaticResource Headline}"
             SemanticProperties.HeadingLevel="Level1" />
 
@@ -117,4 +146,5 @@
 
         </VerticalStackLayout>
     </ScrollView>
+    </StackLayout>
 </ContentPage>

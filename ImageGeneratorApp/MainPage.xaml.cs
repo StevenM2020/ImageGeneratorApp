@@ -50,7 +50,7 @@ namespace ImageGeneratorApp
         // when the user clicks the button or presses enter
         private async void OnActionButtonClicked(object sender, EventArgs e)
         {
-            ((Button)sender).IsEnabled = false;
+            btnAction.IsEnabled = false;
             if (LoginScreen)
             {
                 Login();
@@ -59,7 +59,6 @@ namespace ImageGeneratorApp
             {
                 SignUp();
             }
-            ((Button)sender).IsEnabled = true;
         }
 
         // this function checks if the email and password are valid and then logs the user in
@@ -85,7 +84,7 @@ namespace ImageGeneratorApp
             }
 
             // save the user's ID to the secure storage
-            Storage.SaveUserID(email);
+            await Storage.SaveUserID(email);
             Storage.SetRememberUser(swtRemember.IsToggled);
             await Navigation.PushAsync(new Home());
             Navigation.RemovePage(this);
@@ -125,8 +124,8 @@ namespace ImageGeneratorApp
             }
             txtEmail.BackgroundColor = Color.FromRgb(31, 31, 31);
 
-            Storage.CreateUser(email, password);
-            Storage.SaveUserID(email);
+            await Storage.CreateUser(email, password);
+            await Storage.SaveUserID(email);
             Storage.SetRememberUser(swtRemember.IsToggled);
             await Navigation.PushAsync(new Home());
             Navigation.RemovePage(this);

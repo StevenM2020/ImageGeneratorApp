@@ -86,11 +86,14 @@
             </HorizontalStackLayout>
 
 
-            <Image
-                x:Name="testImage"
+            <Label
+                Text="Developed by Steven Motz"
+                TextColor="Gray"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="End"
+                VerticalOptions="End" 
                 HeightRequest="200"
-                WidthRequest="200"
-                Aspect="AspectFit" />
+                />
 
         </VerticalStackLayout>
     </ScrollView>

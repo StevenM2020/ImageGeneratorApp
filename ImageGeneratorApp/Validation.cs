@@ -43,19 +43,19 @@ namespace ImageGeneratorApp
         // a valid password must be at least 8 char long and can contain letters, numbers, and special characters
         internal static bool ValidatePassword(object sender)
         {
-            Entry passowrd = (Entry)sender;
-            string strEmail = passowrd.Text;
-            if (passowrd.Text == null)
+            Entry password = (Entry)sender;
+            string strEmail = password.Text;
+            if (password.Text == null)
             {
-                passowrd.BackgroundColor = Color.FromRgb(100, 0, 0);
+                password.BackgroundColor = Color.FromRgb(100, 0, 0);
                 return false;
             }
             if (!Regex.IsMatch(strEmail, @"^[a-zA-Z0-9@#$!%^&*]{8,}$"))
             {
-                passowrd.BackgroundColor = Color.FromRgb(100, 0, 0);
+                password.BackgroundColor = Color.FromRgb(100, 0, 0);
                 return false;
             }
-            passowrd.BackgroundColor = Color.FromRgb(31, 31, 31);
+            password.BackgroundColor = Color.FromRgb(31, 31, 31);
             return true;
         }
         //https://regex101.com/
